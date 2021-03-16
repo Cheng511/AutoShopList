@@ -1,6 +1,5 @@
 # coding = utf-8
 # PChome24h 爬蟲
-from selenium import webdriver
 import requests
 import json
 import urllib.parse
@@ -34,7 +33,7 @@ def Get_Results(parse_word):
                       '網址: https://24h.pchome.com.tw/prod/' + prod_id + '\n')
                 print()
                 today = str(datetime.date.today())
-                with open(today + '_' + keyword + '.csv', 'a') as f:
+                with open(today + '_' + keyword + 'pchome.csv', 'a') as f:
                     file = csv.writer(f)
                     file.writerow(['名稱', '價格', '網址'])
                     file.writerow([product_name, prod_price, link])
