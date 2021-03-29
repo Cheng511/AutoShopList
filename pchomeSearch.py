@@ -9,9 +9,8 @@ import datetime
 
 keyword = str(input("請輸入搜尋關鍵字: "))
 n = int(input("請問要搜尋多少頁的內容? "))
+print('爬蟲中...')
 parse_word = urllib.parse.quote(keyword)
-print('搜尋結果如下: ')
-print('='*30)
 
 
 def Get_Results(parse_word):
@@ -28,15 +27,12 @@ def Get_Results(parse_word):
                 prod_id = key['Id']
                 prod_price = str(key['price'])
                 link = 'https://24h.pchome.com.tw/prod/' + prod_id
-                print('名稱: ' + product_name + '\n' +
-                      '價格: $' + prod_price + '\n' +
-                      '網址: https://24h.pchome.com.tw/prod/' + prod_id + '\n')
-                print()
                 today = str(datetime.date.today())
                 with open(today + '_' + keyword + 'pchome.csv', 'a') as f:
                     file = csv.writer(f)
                     file.writerow(['名稱', '價格', '網址'])
                     file.writerow([product_name, prod_price, link])
+                    print('爬蟲結果在csv檔了！')
         except Exception as err:
             print(str(err))
 
